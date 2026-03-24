@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+@theme {
+  /* Font Families */
+  --font-headline: "Epilogue", "Bebas Neue", sans-serif;
+  --font-body: "Inter", sans-serif;
+
+  /* Colors based on Provided HTML / Red Theme */
+  --color-primary-container: #cc0000;
+  --color-secondary-container: #ffdb3c;
+  --color-on-secondary-container: #725f00;
+  
+  --color-surface: #131313;
+  --color-surface-container-low: #1c1b1b;
+  --color-surface-container: #201f1f;
+  --color-surface-container-high: #2a2a2a;
+  --color-surface-container-highest: #353534;
+  
+  --color-on-surface: #e5e2e1;
+  --color-on-surface-variant: #e8bdb6;
+
+  --color-white: #ffffff;
+  --color-black: #000000;
+}
+
+@layer base {
+  :root {
+    background-color: var(--color-surface);
+    color: var(--color-white);
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-body);
+    overflow-x: hidden;
+    cursor: none; /* Hide default cursor for our custom glowing one */
+    background: var(--color-surface);
+  }
+
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
+
+  ::selection {
+    background-color: var(--color-blood-red);
+    color: var(--color-white);
+  }
+
+  /* Utility classes mapped from the design system */
+  .font-headline { font-family: var(--font-headline); }
+  .font-body { font-family: var(--font-body); }
+}
+
+@layer utilities {
+  .glass-panel {
+    @apply bg-[rgba(38,38,38,0.6)] backdrop-blur-xl border border-white/5 shadow-2xl;
+  }
+
+  .kinetic-gradient {
+    background: radial-gradient(circle at 50% 50%, rgba(204, 0, 0, 0.15) 0%, transparent 70%);
+  }
+  .ripple-bg {
+    background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0);
+    background-size: 24px 24px;
+  }
+  .animate-marquee {
+    animation: scroll-left 30s linear infinite;
+  }
+  
+  @keyframes scroll-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .text-glow-red {
+    text-shadow: 0 0 10px rgba(204, 0, 0, 0.7), 0 0 20px rgba(204, 0, 0, 0.5);
+  }
+
+  .glow-box-red {
+    box-shadow: 0 0 30px 5px rgba(204, 0, 0, 0.15);
+  }
+}
